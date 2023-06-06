@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <link href="https://fonts.googleapis.com/css2?family=Oleo+Script+Swash+Caps&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <title>Debaters.com</title>
+
+</head>
+
+<body>
+    <header class="main-header">
+        <nav class="nav main-nav">
+            <ul>
+                <li><a href="">About us</a></li>
+                <li><a href="">Trending Debates</a></li>
+                <li><a href="">Contact us</a></li>
+            </ul>
+        </nav>
+    </header>
+    <div class="main-heading">
+        <h1>DeBaters.com</h1>
+    </div>
+
+    <div class="box-container-one">
+        <div class="item">
+            <p>Flex Item 1</p>
+        </div>
+        <div class="item"><a class="link" href="recentDebates.html">Recent updates</a>
+            <div class="loading-overlay">
+                <div class="loading-spinner"></div>
+            </div>
+        </div>
+        <div class="item">
+            <p>Flex Item 3</p>
+        </div>
+    </div>
+
+    <div class="quote-line">
+        <p class="quote active">“For good ideas and true innovation,
+            you need human interaction, conflict, argument, debate.” ~ Margaret Heffernan"</p>
+        <p class="quote">“When the debate is lost, slander becomes the tool of the loser.” ~ Socrates"</p>
+        <p class="quote">“I will only debate with my equals. All others I teach.” ~ John Henrik Clarke"</p>
+    </div>
+
+    <script>
+        const quoteContainer = document.querySelector('.quote-line');
+        const quotes = quoteContainer.querySelectorAll('.quote');
+
+        let currentQuoteIndex = 0;
+
+        function showNextQuote() {
+            quotes[currentQuoteIndex].classList.remove('active');
+            currentQuoteIndex = (currentQuoteIndex + 1) % quotes.length;
+            quotes[currentQuoteIndex].classList.add('active');
+        }
+
+        setInterval(showNextQuote, 6000);
+
+        const link = document.querySelector('.link');
+        const loadingOverlay = document.querySelector('.loading-overlay');
+        const loadingIcon = document.querySelector('.loading-spinner');
+
+        link.addEventListener('click', (e) => {
+            e.preventDefault();
+            document.body.classList.add('blur');
+            loadingOverlay.style.display = 'block'; 
+            loadingIcon.style.display = 'block';
+
+            setTimeout(() => {
+                window.location.href = 'recentDebates.html';
+            }, 5000);
+        });
+        window.addEventListener('load', () => {
+            document.body.classList.remove('blur');
+            loadingIcon.style.display = 'none';
+            loadingOverlay.style.display = 'none';
+        });
+    </script>
+</body>
+
+</html>
